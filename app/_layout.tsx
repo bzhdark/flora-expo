@@ -1,29 +1,35 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import "../assets/global.css";
+import { useAuthStore } from "../lib/stores/authStore";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+const queryClient = new QueryClient();
+
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+  const token = useAuthStore((s) => s.token);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <QueryClientProvider client={queryClient}>
+      <StatusBar style='auto' />
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        <Stack.Protected guard={!token}>
+          <Stack.Screen
+            name='login'
+            options={{ headerShown: false, animationTypeForReplace: "pop", gestureEnabled: false }}
+          />
+        </Stack.Protected>
+        <Stack.Protected guard={!!token}>
+          <Stack.Screen name='(drawer)' options={{ headerShown: false }} />
+        </Stack.Protected>
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    </QueryClientProvider>
   );
 }
