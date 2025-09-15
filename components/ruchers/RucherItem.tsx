@@ -1,10 +1,22 @@
+import { Rucher } from "@/lib/models/rucher.model";
 import React from "react";
-import { Text, View } from "react-native";
+import { Alert, Text, TouchableOpacity } from "react-native";
 
-export default function RucherItem() {
+interface RucherItemProps {
+  rucher: Rucher;
+}
+
+export default function RucherItem({ rucher }: RucherItemProps) {
+
+  const onTouch = () => {
+    Alert.alert("Rucher", rucher.nom);
+  }
+
   return (
-    <View>
-      <Text>RucherItem</Text>
-    </View>
+
+    <TouchableOpacity className="bg-white p-4 rounded-lg shadow-md" onPress={onTouch}>
+      <Text>{rucher.nom}</Text>
+    </TouchableOpacity>
+
   );
 }

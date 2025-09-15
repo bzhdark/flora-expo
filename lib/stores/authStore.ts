@@ -12,6 +12,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   setToken: (token: string) => {
     mmkv.set("token", token);
     set({ token });
+    
   },
   logout: () => {
     mmkv.delete("token");

@@ -18,7 +18,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar style='auto' />
+      <StatusBar style='dark' />
       <Stack>
         <Stack.Protected guard={!token}>
           <Stack.Screen
