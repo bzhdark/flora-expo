@@ -1,11 +1,11 @@
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import { Link, Stack } from "expo-router";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 
 export default function Dashboard() {
   return (
-    <View className='flex-1 items-center justify-center'>
+    <View className='p-4'>
       <Stack.Screen
         options={{ headerLeft: () => <DrawerToggleButton />, title: "Tableau de bord", headerShown: true }}
       />
@@ -16,6 +16,7 @@ export default function Dashboard() {
           <Text className='text-white'>Go to Ruchers</Text>
         </Pressable>
       </Link>
+      <TextInput className='mt-12' placeholder='Test' selectTextOnFocus={false} />
     </View>
   );
 }

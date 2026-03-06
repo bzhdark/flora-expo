@@ -1,22 +1,15 @@
-import ThemedInput from "@/components/ui/ThemedInput";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import * as Device from "expo-device";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  ScrollView,
-  Text,
-  View
-} from "react-native";
+import { Alert, Keyboard, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import InputWrapper from "../components/ui/InputWrapper";
+import InvisibleInput from "../components/ui/InvisibleInput";
+import ThemedButton from "../components/ui/ThemedButton";
 import { useAuthStore } from "../lib/stores/authStore";
 import { API_URL } from "../lib/utils/constantes";
 
@@ -48,41 +41,47 @@ export default function LoginScreen() {
   useEffect(() => {
     SplashScreen.hide();
     queryClient.clear();
-  }, []);
+  }, [queryClient]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-        <ScrollView keyboardShouldPersistTaps='handled' className="flex-1 p-4">
-          <View className="flex flex-col gap-4">
-            <Text className="text-2xl font-bold">Login</Text>
-            <ThemedInput
-              placeholder='Email'
-              autoCapitalize='none'
-              value={email}
-              onChangeText={setEmail}
-              keyboardType='email-address'
-              textContentType='emailAddress'
+    <SafeAreaView style={{ flex: 1 }} className='bg-slate-50'>
+      <ScrollView
+        keyboardShouldPersistTaps='handled'
+        className='flex-1'
+        keyboardDismissMode='on-drag'
+        contentInsetAdjustmentBehavior='automatic'
+        contentContainerStyle={{ padding: 16, paddingTop: 12, gap: 20 }}
+      >
+        <View className='items-center gap-2 mt-2'>
+          <Text className='text-sm font-medium text-emerald-700'>Bienvenue sur Flora</Text>
+          <Text className='text-4xl text-slate-800 font-bold text-center'>Connexion</Text>
+        </View>
+        <View className='w-52 h-52 mx-auto'>
+          <Image source={require("../assets/images/login.png")} style={{ width: "100%", height: "100%" }} />
+        </View>
+        <InputWrapper>
+          <InvisibleInput
+            placeholder='Adresse email'
+            autoCapitalize='none'
+            value={email}
+            onChangeText={setEmail}
+            keyboardType='email-address'
+            textContentType='emailAddress'
+          />
+          <View className='h-px bg-slate-200 my-2' />
 
-            />
+          <InvisibleInput placeholder='Mot de passe' secureTextEntry value={password} onChangeText={setPassword} />
+        </InputWrapper>
+        <ThemedButton onPress={() => mutation.mutate()} loading={mutation.isPending} title='Connexion' />
 
-            <ThemedInput
-              placeholder='Password'
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-            />
-            <Pressable
-              onPress={() => mutation.mutate()}
-              disabled={mutation.isPending}
-              className='bg-blue-500 active:bg-blue-600 p-4 rounded-md flex items-center justify-center flex-row'
-            >
-              <Text className='text-white'>Login</Text>
-              {mutation.isPending && <ActivityIndicator size='small' color='#fff' className='ml-2' />}
-            </Pressable>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        <ThemedButton
+          disabled={mutation.isPending}
+          title='Pas encore inscrit ?'
+          type='neutral'
+          className='mt-4'
+          onPress={() => router.push("/register")}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }

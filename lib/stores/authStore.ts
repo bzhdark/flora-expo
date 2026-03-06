@@ -1,5 +1,7 @@
+import * as SecureStore from "expo-secure-store";
 import { create } from "zustand";
-import { mmkv } from "../utils/mmkvClient";
+
+const TOKEN_KEY = "token";
 
 interface AuthState {
   token: string | null;
@@ -8,14 +10,13 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  token: mmkv.getString("token") || null,
+  token: SecureStore.getItem(TOKEN_KEY),
   setToken: (token: string) => {
-    mmkv.set("token", token);
+    SecureStore.setItem(TOKEN_KEY, token);
     set({ token });
-    
   },
   logout: () => {
-    mmkv.delete("token");
+    SecureStore.deleteItemAsync(TOKEN_KEY);
     set({ token: null });
   },
 }));

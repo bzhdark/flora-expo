@@ -1,9 +1,60 @@
 export const QUERY_KEYS = {
+  EXPLOITATIONS: {
+    all: ["exploitations"] as const,
+    current: ["exploitation"] as const,
+    details: () => [...QUERY_KEYS.EXPLOITATIONS.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.EXPLOITATIONS.details(), id] as const,
+  },
+  MIELLEES: {
+    all: ["miellees"] as const,
+    lists: () => [...QUERY_KEYS.MIELLEES.all, "list"] as const,
+    list: (filters: any = {}) => [...QUERY_KEYS.MIELLEES.lists(), filters] as const,
+    details: () => [...QUERY_KEYS.MIELLEES.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.MIELLEES.details(), id] as const,
+  },
+  ROLES: {
+    all: ["roles"] as const,
+    lists: () => [...QUERY_KEYS.ROLES.all, "list"] as const,
+    list: (filters: any = {}) => [...QUERY_KEYS.ROLES.lists(), filters] as const,
+    details: () => [...QUERY_KEYS.ROLES.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.ROLES.details(), id] as const,
+  },
+  TYPE_RUCHES: {
+    all: ["types-ruches"] as const,
+    lists: () => [...QUERY_KEYS.TYPE_RUCHES.all, "list"] as const,
+    list: (filters: any = {}) => [...QUERY_KEYS.TYPE_RUCHES.lists(), filters] as const,
+    details: () => [...QUERY_KEYS.TYPE_RUCHES.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.TYPE_RUCHES.details(), id] as const,
+  },
   RUCHERS: {
     all: ["ruchers"] as const,
     lists: () => [...QUERY_KEYS.RUCHERS.all, "list"] as const,
     list: (filters: string) => [...QUERY_KEYS.RUCHERS.lists(), { filters }] as const,
     details: () => [...QUERY_KEYS.RUCHERS.all, "detail"] as const,
     detail: (id: number) => [...QUERY_KEYS.RUCHERS.details(), id] as const,
+  },
+  RUCHES: {
+    all: ["ruches"] as const,
+    lists: () => [...QUERY_KEYS.RUCHES.all, "list"] as const,
+    list: (filters: string) => [...QUERY_KEYS.RUCHES.lists(), { filters }] as const,
+    details: () => [...QUERY_KEYS.RUCHES.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.RUCHES.details(), id] as const,
+  },
+  SIROPS: {
+    all: ["sirops"] as const,
+    lists: () => [...QUERY_KEYS.SIROPS.all, "list"] as const,
+    list: (filters: any = {}) => [...QUERY_KEYS.SIROPS.lists(), filters] as const,
+    details: () => [...QUERY_KEYS.SIROPS.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.SIROPS.details(), id] as const,
+  },
+  USERS: {
+    current: ["user"] as const,
+  },
+  HAUSSES: {
+    all: ["hausses"] as const,
+    lists: () => [...QUERY_KEYS.HAUSSES.all, "list"] as const,
+    list: (filters: any = {}) => [...QUERY_KEYS.HAUSSES.lists(), filters] as const,
+    details: () => [...QUERY_KEYS.HAUSSES.all, "detail"] as const,
+    detail: (id: number) => [...QUERY_KEYS.HAUSSES.details(), id] as const,
   },
 };

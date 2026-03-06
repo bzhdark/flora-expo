@@ -1,0 +1,24 @@
+export type Ruche = {
+  id: number;
+  reference: string;
+  vide: boolean;
+  note: number;
+  gestion_rbc: boolean;
+  archivee: boolean;
+  souche_id?: number;
+  rucher_id?: number;
+  reine_id?: number;
+  type_ruche_id: number;
+  exploitation_id: number;
+  created_at?: string;
+  updated_at?: string;
+  // rucher?: Rucher;
+  // exploitation?: Exploitation;
+  // todos?: Todo[];
+  // hausses?: Hausse[];
+  // visites?: Visite[];
+  // nourrissements?: Nourrissement[];
+  // notes?: Note[];
+  // souche?: Souche;
+  // reine?: Reine;
+};

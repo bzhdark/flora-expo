@@ -1,19 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useUser } from "@/lib/hooks/useUser";
+import { Ionicons } from "@expo/vector-icons";
 import { Drawer } from "expo-router/drawer";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { Text, View } from "react-native";
-import { axiosClient } from "../../lib/utils/axiosClient";
 
 export default function Layout() {
-  const { isFetched, isError, error } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const { data } = await axiosClient.get("/user");
-      console.log("User loaded", data);
-      return data;
-    },
-  });
+  const { isFetched, isError, error } = useUser();
 
   useEffect(() => {
     if (isFetched) {
@@ -34,10 +27,23 @@ export default function Layout() {
   }
 
   return (
-    <Drawer screenOptions={{ headerShown: false, drawerActiveTintColor: "red" }}>
-      <Drawer.Screen name='index' />
-      <Drawer.Screen name='(rucher-tabs)' options={{ title: "Au rucher" }} />
-      <Drawer.Screen name='settings' />
-    </Drawer>
+    <>
+      <Drawer
+        screenOptions={{
+          headerShown: false,
+          drawerActiveTintColor: "#258052",
+        }}
+      >
+        <Drawer.Screen name='index' />
+        <Drawer.Screen name='(rucher-tabs)' options={{ title: "Au rucher" }} />
+        <Drawer.Screen
+          name='parametres'
+          options={{
+            title: "Paramètres",
+            drawerIcon: ({ color, size }) => <Ionicons name='settings' size={size} color={color} />,
+          }}
+        />
+      </Drawer>
+    </>
   );
 }

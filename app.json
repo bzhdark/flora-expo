@@ -7,17 +7,16 @@
     "icon": "./assets/images/icon.png",
     "scheme": "floraexpo",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.hexatek.flora"
+      "bundleIdentifier": "com.hexatek.flora",
+      "appleTeamId": "YVNJM59573"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "package": "com.hexatek.flora"
     },
     "web": {
@@ -37,7 +36,16 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permet de préciser l'emplacement de ses ruchers sur la carte."
+        }
+      ],
+      "expo-maps",
+      "expo-image",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
