@@ -24,7 +24,7 @@ export const haussesService = {
     return response.data;
   },
   createHaussesBulk: async (data: CreateHausseBulkRequest) => {
-    const response = await axiosClient.post<ApiResponse>("/hausses/create-many", data);
+    const response = await axiosClient.post<ApiResponse & { haussesIgnorees: number }>("/hausses/create-many", data);
     return response.data;
   },
 };

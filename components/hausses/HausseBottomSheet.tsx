@@ -33,7 +33,7 @@ export default function HausseBottomSheet({ hausseId }: HausseBottomSheetProps) 
 
   return (
     <View>
-      <SafeAreaView className='flex flex-row items-center justify-center mt-5 gap-3' edges={["bottom"]}>
+      <SafeAreaView className='flex mt-5 gap-3' edges={["bottom"]}>
         <ActionSheetButton label='Modifier' onPress={handleEdit} icon='pencil-outline' color='orange' />
         <ActionSheetButton label='Supprimer' onPress={handleDelete} icon='trash' color='red' />
       </SafeAreaView>

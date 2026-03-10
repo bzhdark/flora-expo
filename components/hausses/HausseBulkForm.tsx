@@ -38,14 +38,15 @@ export default function HausseBulkForm() {
       .filter(Boolean)
       .join("\n");
     if (errorMessages) {
-      Alert.alert("Erreur", errorMessages);
+      Alert.alert("Erreur", "Des erreurs ont été trouvées");
     }
   };
 
   const handleFormSubmit = (data: HausseBulkFormData) => {
     Keyboard.dismiss();
     createBulkMutation.mutate(data as CreateHausseBulkRequest, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        console.log(res);
         router.back();
       },
       onError,

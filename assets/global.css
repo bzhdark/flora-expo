@@ -1,3 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "uniwind";
+
+@source "../app";
+@source "../components";
+
+@theme {
+  --font-sans: "Inter";
+  --font-mono: "SpaceMono";
+}

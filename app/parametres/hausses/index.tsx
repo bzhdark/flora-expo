@@ -1,19 +1,21 @@
-import HaussesMenuBottomSheet from "@/components/hausses/HaussesMenuBottomSheet";
 import HausseItem from "@/components/hausses/HausseItem";
+import HaussesMenuBottomSheet from "@/components/hausses/HaussesMenuBottomSheet";
 import FloatingActionButton from "@/components/ui/FloatingActionButton";
 import HeaderButton from "@/components/ui/HeaderButton";
+import ThemedInput from "@/components/ui/ThemedInput";
 import ThemedView from "@/components/ui/ThemedView";
 import { useBottomSheet } from "@/lib/hooks/useBottomSheet";
 import { useHausses } from "@/lib/hooks/useHausses";
 import { Hausse } from "@/lib/types/hausseTypes";
 import { router, Stack } from "expo-router";
 import React, { useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Keyboard, Text, View } from "react-native";
 
 export default function HaussesScreen() {
   const { data: hausses, error, refetch } = useHausses();
   const [refreshing, setRefreshing] = useState(false);
   const { openBottomSheet } = useBottomSheet();
+  const [searchRef, setSearchRef] = useState("");
 
   const openHaussesMenu = () => {
     openBottomSheet({
@@ -54,6 +56,10 @@ export default function HaussesScreen() {
           onRefresh={handleRefresh}
           refreshing={refreshing}
           ListEmptyComponent={<Text>Aucune hausse trouvée</Text>}
+          onScroll={() => Keyboard.dismiss()}
+          ListHeaderComponent={<ThemedInput
+            className='mb-4' placeholder='Rechercher par référence'
+            onChangeText={(text) => setSearchRef(text)} />}
         />
       ) : error ? (
         <View className='flex-1 items-center justify-center'>

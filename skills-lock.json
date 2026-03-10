@@ -4,32 +4,42 @@
     "building-native-ui": {
       "source": "expo/skills",
       "sourceType": "github",
-      "computedHash": "342df93f481a0dba919f372d6c7b40d2b4bf5b51dd24363aea2e5d0bae27a6fa"
+      "computedHash": "a0316d2ce842d2dd8067a144e339cf502329dc7701f9f5122268fdb3d4c980f7"
     },
     "expo-deployment": {
       "source": "expo/skills",
       "sourceType": "github",
-      "computedHash": "9ea9f16374765c1b16764a51bd43a64098921b33f48e94d9c5c1cce24b335c10"
+      "computedHash": "2a26de7ec3faaf19333ec5660152e5e711ef000a29d75324dff51967bc382755"
     },
     "expo-dev-client": {
       "source": "expo/skills",
       "sourceType": "github",
-      "computedHash": "234e2633b7fbcef2d479f8fe8ab20d53d08ed3e4beec7c965da4aff5b43affe7"
+      "computedHash": "ea568acdc9036b82b969159757456e9a4cdfae7f645ac2fad5fdf0f734f53568"
     },
     "expo-tailwind-setup": {
       "source": "expo/skills",
       "sourceType": "github",
       "computedHash": "d39e806942fe880347f161056729b588a3cb0f1796270eebf52633fe11cfdce1"
     },
+    "migrate-nativewind-to-uniwind": {
+      "source": "uni-stack/uniwind",
+      "sourceType": "github",
+      "computedHash": "d3570bc395e5c9f12eddf4fcb613d92e7f4b1fbdb5692b20309fa87b70ff0718"
+    },
     "native-data-fetching": {
       "source": "expo/skills",
       "sourceType": "github",
       "computedHash": "6c14e4efb34a9c4759e8b959f82dec328f87dd89a022957c6737086984b9b106"
     },
+    "uniwind": {
+      "source": "uni-stack/uniwind",
+      "sourceType": "github",
+      "computedHash": "bc1f10eb442df6fc4794865bc961fee0455261672159081084b904c5ba6c8cee"
+    },
     "upgrading-expo": {
       "source": "expo/skills",
       "sourceType": "github",
-      "computedHash": "b10c092308d8d7401e2fc75fd773a79762ba4dad4ec1c7f5f5551efb0ba2cfdc"
+      "computedHash": "7ccc3de855963fcfd8fa25a81a0baa98e165be0ae46577b736367c104959c30a"
     }
   }
 }

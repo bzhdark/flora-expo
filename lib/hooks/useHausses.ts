@@ -28,8 +28,11 @@ export const useCreateHaussesBulk = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: CreateHausseBulkRequest) => haussesService.createHaussesBulk(data),
-    onSuccess: async () => {
-      return await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.HAUSSES.list() });
+    onSuccess: async (res) => {
+      if (res.haussesIgnorees > 0) {
+        Alert.alert("Attention", `Certaines hausses ont été ignorées car elles existent déjà: ${res.haussesIgnorees} hausses ignorées.`);
+      }
+      return await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.HAUSSES.lists() });
     },
     onError: (error: AxiosError<any>) => {
       Alert.alert("Erreur", error.response?.data?.message || "Une erreur est survenue lors de la création des hausses");

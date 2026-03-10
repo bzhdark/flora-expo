@@ -5,7 +5,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaListener } from "react-native-safe-area-context";
+import { Uniwind } from "uniwind";
 import "../assets/global.css";
 import { BottomSheetManager } from "../components/BottomSheetManager";
 import { useAuthStore } from "../lib/stores/authStore";
@@ -24,6 +25,11 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
+      <SafeAreaListener
+        onChange={({ insets }) => {
+          Uniwind.updateInsets(insets);
+        }}
+      >
       <KeyboardProvider>
         <GestureHandlerRootView className='flex-1'>
           <QueryClientProvider client={queryClient}>
@@ -58,6 +64,7 @@ export default function RootLayout() {
           </QueryClientProvider>
         </GestureHandlerRootView>
       </KeyboardProvider>
+      </SafeAreaListener>
     </SafeAreaProvider>
   );
 }

@@ -56,12 +56,11 @@ export default function ActionSheetButton({
     <Pressable
       onPress={onPress}
       className={clsx(
-        "h-20 w-20 rounded-2xl flex items-center justify-center gap-1.5",
-        "border",
+        "w-full rounded-2xl flex flex-row items-center justify-start gap-3 p-5",
         config.bg,
         config.activeBg,
         config.border,
-        "active:scale-[0.97]",
+        "active:scale-[0.98]",
         className
       )}
       {...props}
@@ -69,7 +68,7 @@ export default function ActionSheetButton({
       <Ionicons name={icon} size={28} color={config.iconColor} />
       <Text
         className={clsx(
-          "text-[11px] text-center font-medium",
+          "text-md font-medium",
           config.text
         )}
         numberOfLines={1}
